@@ -3,7 +3,6 @@
 }
 
 .main {
-  min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
   display: flex;
@@ -126,4 +125,22 @@
   .logo img {
     filter: invert(1);
   }
+}
+
+.button {
+  background-color: #045faa;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  margin:10px 10px;
+  transition-duration: 0.4s;
+
+}
+
+.button:hover {
+  background-color: #4CAF50; 
+  color: white;
 }
