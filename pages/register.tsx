@@ -1,28 +1,50 @@
 import React from 'react'
 import Head from 'next/head'
+import RegisterForm from '../components/RegisterForm'
 import styles from '../styles/Login.module.css'
+import router from 'next/router'
 
-const register = () => (
-  <div>
-    <Head>
-      <title>Register</title>
-    </Head>
+const register = () => { 
+  const registerRequest = (formData: React.FormEvent<HTMLInputElement>) => {
+    console.log("register", formData)
+    fetch("http://localhost:3001/api/signup", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          username: formData.username,
+          password: formData.password,
+          email: formData.email,
+        },
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        console.log("res: ", res)
+        localStorage.setItem("token", res.headers.get("Authorization"))
+        router.push("/discover")
+      } else {
+        throw new Error(res)
+      }
+    })
+  }
 
-    <div className={styles.main}>
-      <div className={styles.card}>
-
-        <h2>Register</h2>
-          
-        <form action="/discover" method="post">
-          <label htmlFor="username" className={styles.label}>Username:</label>
-          <input type="text" id="username" name="username" className={styles.textfield} />
-          <label htmlFor="password" className={styles.label}>Password:</label>
-          <input type="text" id="password" name="password" className={styles.textfield} />
-          <button type="submit" className={styles.submit}>Register</button>
-        </form>
+  return(
+    <div>
+      <Head>
+        <title>Register</title>
+      </Head>
+  
+      <div className={styles.main}>
+        <div className={styles.card}>
+  
+          <h2>Register</h2>
+            <RegisterForm onSubmit={registerRequest} buttonText="Register" />
+        </div>
       </div>
     </div>
-  </div>
-)
+  )
+}
 
 export default register
