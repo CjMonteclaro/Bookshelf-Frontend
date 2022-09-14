@@ -4,9 +4,8 @@ import RegisterForm from '../components/RegisterForm'
 import styles from '../styles/Login.module.css'
 import router from 'next/router'
 
-const register = () => { 
+const Register = () => { 
   const registerRequest = (formData: React.FormEvent<HTMLInputElement>) => {
-    console.log("register", formData)
     fetch("http://localhost:3001/api/signup", {
       method: "post",
       headers: {
@@ -20,13 +19,10 @@ const register = () => {
         },
       }),
     }).then((res) => {
-      if (res.ok) {
-        console.log("res: ", res)
         localStorage.setItem("token", res.headers.get("Authorization"))
         router.push("/discover")
-      } else {
-        throw new Error(res)
-      }
+    }).catch((error) => {
+      throw new Error(error)
     })
   }
 
@@ -47,4 +43,4 @@ const register = () => {
   )
 }
 
-export default register
+export default Register

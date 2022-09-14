@@ -4,9 +4,8 @@ import LoginForm from '../components/LoginForm'
 import styles from '../styles/Login.module.css'
 import router from 'next/router'
 
-const login = () => { 
-  const loginRequest = (formData: React.FormEvent<HTMLInputElement>) => {
-    console.log("login", formData)
+const Login = () => { 
+  const loginRequest = (formData: any) => {
     fetch("http://localhost:3001/api/login", {
       method: "post",
       headers: {
@@ -19,13 +18,10 @@ const login = () => {
         },
       }),
     }).then((res) => {
-      if (res.ok) {
-        console.log("res: ", res)
         localStorage.setItem("token", res.headers.get("Authorization"))
         router.push("/discover")
-      } else {
-        throw new Error(res)
-      }
+    }).catch((error) => {
+      throw new Error(error)
     })
   }
 
@@ -46,4 +42,4 @@ const login = () => {
   )
 }
 
-export default login
+export default Login

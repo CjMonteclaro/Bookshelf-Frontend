@@ -1,15 +1,15 @@
 import React from "react";
 import styles from '../styles/Login.module.css'
 
-interface RegisterForm {
-  onSubmit: React.FormEvent,
+interface RegisterFormProps {
+  onSubmit: any,
   buttonText: string,
 }
 
-function RegisterForm({onSubmit, buttonText}) {
-  function handleSubmit(event) {
+function RegisterForm({onSubmit, buttonText}:RegisterFormProps) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    const {username, password, email} = event.target.elements
+    const {username, password, email} = event.currentTarget
 
     onSubmit({
       username: username.value,

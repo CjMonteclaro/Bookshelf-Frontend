@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Booklist.module.css'
 
-const list = () => (
+const List = () => (
   <>
     <Head>
       <title>Reading List</title>
@@ -40,4 +40,4 @@ const list = () => (
   </>
 )
 
-export default list
+export default List

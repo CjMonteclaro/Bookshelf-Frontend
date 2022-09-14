@@ -3,6 +3,7 @@
 }
 
 .main {
+  min-height: 80vh;
   padding: 4rem 0;
   flex: 1;
   display: flex;
@@ -137,7 +138,6 @@
   float: right;
   margin:10px 10px;
   transition-duration: 0.4s;
-
 }
 
 .button:hover {

@@ -1,10 +1,15 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Sidenav from './Sidenav'
+import { FC } from "react"
 import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 
-const Layout = ({ children }) => {
+interface Props {
+  children: React.ReactNode;
+}
+
+const Layout: FC<Props> = ({ children }) => {
   const router = useRouter();
   const showNav = router.pathname === "/" ? false
     : router.pathname === "/login" ? false

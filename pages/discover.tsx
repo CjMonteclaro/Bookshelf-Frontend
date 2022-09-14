@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Booklist.module.css'
 
-const discover = () => (
+const Discover = () => (
   <>
     <Head>
       <title>Discover New Books</title>
@@ -40,4 +40,4 @@ const discover = () => (
   </>
 )
 
-export default discover
+export default Discover

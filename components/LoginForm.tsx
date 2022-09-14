@@ -1,15 +1,14 @@
 import React from "react";
 import styles from '../styles/Login.module.css'
 
-interface LoginForm {
-  onSubmit: React.FormEvent,
+interface LoginFormProps {
+  onSubmit: any,
   buttonText: string,
 }
 
-function LoginForm({onSubmit, buttonText}) {
-  function handleSubmit(event) {
-    event.preventDefault()
-    const {username, password} = event.target.elements
+function LoginForm({onSubmit, buttonText}:LoginFormProps) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    const {username, password} = event.currentTarget
 
     onSubmit({
       username: username.value,
