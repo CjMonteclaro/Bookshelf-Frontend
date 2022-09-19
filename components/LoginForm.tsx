@@ -6,8 +6,8 @@ interface LoginFormProps {
   buttonText: string,
 }
 
-function LoginForm({onSubmit, buttonText}:LoginFormProps) {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+const LoginForm = ({onSubmit, buttonText}:LoginFormProps) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     const {username, password} = event.currentTarget
 
     onSubmit({
@@ -27,4 +27,4 @@ function LoginForm({onSubmit, buttonText}:LoginFormProps) {
   )
 }
 
-export default LoginForm
+export { LoginForm }

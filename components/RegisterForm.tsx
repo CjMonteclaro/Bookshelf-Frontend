@@ -6,8 +6,8 @@ interface RegisterFormProps {
   buttonText: string,
 }
 
-function RegisterForm({onSubmit, buttonText}:RegisterFormProps) {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+const RegisterForm = ({onSubmit, buttonText}:RegisterFormProps) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const {username, password, email} = event.currentTarget
 
@@ -31,4 +31,4 @@ function RegisterForm({onSubmit, buttonText}:RegisterFormProps) {
   )
 }
 
-export default RegisterForm
+export { RegisterForm }
