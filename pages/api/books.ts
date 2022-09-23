@@ -131,27 +131,3 @@ export const removeToFinishedBooks = (bookId: number) => {
     return res.data
   })
 }
-
-// export const searchBooks = (formData: React.FormEvent<HTMLInputElement>) => {
-//   const searchQuery = fetch(`${baseUrl()}/api/search`, {
-//     method: "post",
-//     headers: { 
-//       "Content-Type": "application/json",
-//       ...authHeaders() 
-//     },
-//     body: JSON.stringify({
-//       query: formData.query
-//     }),
-//   }).then((res) => {
-//     return res.json()
-//   })
-
-//   const searchResult = async () => {
-//     const data = await searchQuery;
-//     setBookData([])
-//     setBookData(data.data)
-//     return data 
-//   };
-  
-//   return { result: searchResult() }
-// }

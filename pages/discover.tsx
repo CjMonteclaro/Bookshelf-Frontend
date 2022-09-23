@@ -14,7 +14,6 @@ const Discover = () => {
   const [user, setUser] = useState(null) 
 
   useEffect(() => {
-    // const searchData = searchBooks()
     const data = fetchBooks()
     const userData = fetchUser()
 
@@ -23,18 +22,12 @@ const Discover = () => {
       setBookData(books.data)
     }
 
-    // const getSearchBooks = async () => { 
-    //   const books = await data.searchData
-    //   setBookData(books.data)
-    // }
-
     const getUser = async () => { 
       const users = await userData.user
       setUser(users.id)
     }
     getUser()
     getBooks()
-    // getSearchBooks()
   }, [])
 
   const searchBooks = (formData: React.FormEvent<HTMLInputElement>) => {

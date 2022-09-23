@@ -20,7 +20,7 @@ const SearchForm = ({onSubmit}:SearchProps) => {
     })
   }
 
-  const handleClick = (e) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     Router.reload(window.location.pathname)
   }
 
