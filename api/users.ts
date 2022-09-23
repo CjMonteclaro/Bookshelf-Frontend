@@ -1,4 +1,4 @@
-import { baseUrl, authHeaders } from 'pages/api/base'
+import { baseUrl, authHeaders } from '../api/base'
 
 export const fetchUser = () => {
   const user = fetch(`${baseUrl()}/api/current_user`, {

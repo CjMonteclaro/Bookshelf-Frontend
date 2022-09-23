@@ -24,7 +24,7 @@ const Discover = () => {
 
     const getUser = async () => { 
       const users = await userData.user
-      setUser(users.id)
+      setUser(users.data)
     }
     getUser()
     getBooks()
@@ -50,7 +50,7 @@ const Discover = () => {
   }
 
   const handleClick = (e, bookId) => {
-    addToReadingList(bookId, user)
+    addToReadingList(bookId, user.id)
     Router.reload(window.location.pathname)
   }
   

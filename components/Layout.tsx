@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from './Navbar'
-import Sidenav from './Sidenav'
+import { Navbar } from './Navbar'
+import { Sidenav } from './Sidenav'
 import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 
@@ -24,4 +24,4 @@ const Layout = ({ children }) => {
   )
 }
 
-export default Layout
+export { Layout }

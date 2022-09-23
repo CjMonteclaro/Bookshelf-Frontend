@@ -1,6 +1,5 @@
-import { baseUrl, authHeaders } from 'pages/api/base'
-import { fetchUser } from './users';
-import setBookData from 'pages/discover'
+import { baseUrl, authHeaders } from '../api/base'
+import { fetchUser } from '../api/users';
 
 export const fetchBooks = () => {
   const books = fetch(`${baseUrl()}/api/books`, {
@@ -41,7 +40,7 @@ export const fetchReadingList = () => {
 }
 
 export const addToReadingList = (bookId: number, userId: number) => {
-  const date = new Date()
+  const date = new Date().toISOString().slice(0, 10)
   fetch(`${baseUrl()}/api/list_items`, {
     method: "post",
     headers: { 
@@ -54,7 +53,7 @@ export const addToReadingList = (bookId: number, userId: number) => {
         user_id: userId,
         notes: "",      
         rating: 0,      
-        start_date: date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate(),  
+        start_date: date,  
         finish_date: null, 
       },
     }),
@@ -96,7 +95,7 @@ export const fetchFinishedBooks = () => {
 }
 
 export const addToFinishedBooks = (bookId: number) => {
-  const date = new Date()
+  const date = new Date().toISOString().slice(0, 10)
   fetch(`${baseUrl()}/api/list_items/${bookId}`, {
     method: "put",
     headers: { 
@@ -106,7 +105,7 @@ export const addToFinishedBooks = (bookId: number) => {
     },
     body: JSON.stringify({
       list_item: {
-        finish_date: date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate(),
+        finish_date: date,
       },
     }),
   }).then((res) => {

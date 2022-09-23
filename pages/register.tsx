@@ -1,35 +1,10 @@
 import React from 'react'
 import Head from 'next/head'
-import RegisterForm from '../components/RegisterForm'
+import { RegisterForm } from '../components/RegisterForm'
+import { registerRequest } from '../api/sessions'
 import styles from '../styles/Login.module.css'
-import router from 'next/router'
 
-const register = () => { 
-  const registerRequest = (formData: React.FormEvent<HTMLInputElement>) => {
-    console.log("register", formData)
-    fetch("http://localhost:3001/api/signup", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user: {
-          username: formData.username,
-          password: formData.password,
-          email: formData.email,
-        },
-      }),
-    }).then((res) => {
-      if (res.ok) {
-        console.log("res: ", res)
-        localStorage.setItem("token", res.headers.get("Authorization"))
-        router.push("/discover")
-      } else {
-        throw new Error(res)
-      }
-    })
-  }
-
+const Register = () => { 
   return(
     <div>
       <Head>
@@ -47,4 +22,4 @@ const register = () => {
   )
 }
 
-export default register
+export default Register

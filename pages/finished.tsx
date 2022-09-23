@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Booklist.module.css'
-import { fetchFinishedBooks, removeToFinishedBooks } from './api/books'
+import { fetchFinishedBooks, removeToFinishedBooks } from '../api/books'
 import Router from 'next/router'
 
 const Finished = () => {
