@@ -1,4 +1,5 @@
-import { baseUrl } from '../api/base'
+import router from 'next/router'
+import { baseUrl, authHeaders } from '../api/base'
 
 export const loginRequest = (formData: React.FormEvent<HTMLInputElement>) => {
   fetch(`${baseUrl()}/api/auth/login`, {
@@ -37,3 +38,15 @@ export const registerRequest = (formData: React.FormEvent<HTMLInputElement>) => 
   })
 }
 
+export const logoutRequest = () => {
+  fetch(`${baseUrl()}/api/logout`, {
+    method: "delete",
+    headers: { 
+      "Content-Type": "application/json",
+      ...authHeaders() 
+    },
+  }).then((res) => {
+      localStorage.setItem("token", "");
+      router.push("/")
+  })
+}
