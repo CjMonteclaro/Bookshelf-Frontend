@@ -2,15 +2,21 @@ import router from "next/router";
 import React from "react";
 import styles from '../styles/Login.module.css'
 
-interface RegisterForm {
-  onSubmit: React.FormEvent,
-  buttonText: string,
+interface SubmitProps {
+  username: string,
+  password: string,
+  email: string,
 }
 
-function RegisterForm({onSubmit, buttonText}) {
-  function handleSubmit(event) {
+interface RegisterFormProps {
+  onSubmit: (props: SubmitProps) => void,
+  buttonText: string
+}
+
+const RegisterForm = ({onSubmit, buttonText}:RegisterFormProps) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const {username, password, email} = event.target.elements
+    const {username, password, email} = event.currentTarget
 
     onSubmit({
       username: username.value,
