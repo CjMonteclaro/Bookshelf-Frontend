@@ -1,9 +1,16 @@
+import router from "next/router";
 import React from "react";
 import styles from '../styles/Login.module.css'
 
+interface SubmitProps {
+  username: string,
+  password: string,
+  email: string,
+}
+
 interface RegisterFormProps {
-  onSubmit: any,
-  buttonText: string,
+  onSubmit: (props: SubmitProps) => void,
+  buttonText: string
 }
 
 const RegisterForm = ({onSubmit, buttonText}:RegisterFormProps) => {
@@ -16,6 +23,7 @@ const RegisterForm = ({onSubmit, buttonText}:RegisterFormProps) => {
       password: password.value,
       email: email.value,
     })
+    router.push("/discover")
   }
 
   return (

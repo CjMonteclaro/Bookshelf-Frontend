@@ -1,19 +1,27 @@
+import router from "next/router";
 import React from "react";
 import styles from '../styles/Login.module.css'
 
+interface SubmitProps {
+  username: string,
+  password: string,
+}
+
 interface LoginFormProps {
-  onSubmit: any,
-  buttonText: string,
+  onSubmit: (props: SubmitProps) => void,
+  buttonText: string
 }
 
 const LoginForm = ({onSubmit, buttonText}:LoginFormProps) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
     const {username, password} = event.currentTarget
 
     onSubmit({
       username: username.value,
       password: password.value,
     })
+    router.push("/discover")
   }
 
   return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { RegisterForm } from '../components/RegisterForm'
-import { registerRequest } from './api/sessions'
+import { registerRequest } from '../api/sessions'
 import styles from '../styles/Login.module.css'
 
 const Register = () => { 

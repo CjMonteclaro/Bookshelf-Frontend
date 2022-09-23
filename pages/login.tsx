@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { LoginForm } from '../components/LoginForm'
-import { loginRequest } from './api/sessions'
+import { loginRequest } from '../api/sessions'
 import styles from '../styles/Login.module.css'
 
 const Login = () => { 
