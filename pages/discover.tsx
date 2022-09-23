@@ -3,9 +3,11 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Booklist.module.css'
-import { addToReadingList, fetchBooks } from '../api/books'
-import { fetchUser } from '../api/users'
+import Search from '../components/Search'
+import { addToReadingList, fetchBooks } from './api/books'
+import { fetchUser } from './api/users'
 import Router from 'next/router'
+import { authHeaders, baseUrl } from './api/base'
 
 const Discover = () => {
   const [bookData, setBookData] = useState([]) 
@@ -26,8 +28,26 @@ const Discover = () => {
     }
     getUser()
     getBooks()
-    
   }, [])
+
+  const searchBooks = (formData: React.FormEvent<HTMLInputElement>) => {
+    const searchQuery = fetch(`${baseUrl()}/api/search`, {
+      method: "post",
+      headers: { 
+        "Content-Type": "application/json",
+        ...authHeaders() 
+      },
+      body: JSON.stringify({
+        query: formData.query
+      }),
+    }).then((res) => {
+      return res.json()
+    }).then((data) => {
+      console.log(data)
+      setBookData([])
+      setBookData(data.data)
+    })
+  }
 
   const handleClick = (e, bookId) => {
     addToReadingList(bookId, user.id)
@@ -41,7 +61,12 @@ const Discover = () => {
       </Head>
 
       <main>
-        <p>Welcome to the discover page.</p>
+        <div className={styles.grid}>
+          <Search onSubmit={searchBooks} />
+        </div>
+        <div className={styles.grid}>
+          <p>Welcome to the discover page.</p>
+        </div>
       </main>
       
       {bookData && bookData.map((book) => ( 
