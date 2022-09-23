@@ -2,7 +2,7 @@ import React from "react"
 import Link from "next/link"
 import styles from '../styles/Sidenav.module.css'
 
-const Sidebar = () => {
+const Sidenav = () => {
   return (
     <div className={styles.sidenav}>
       <Link href="/list">
@@ -18,4 +18,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
+export { Sidenav }

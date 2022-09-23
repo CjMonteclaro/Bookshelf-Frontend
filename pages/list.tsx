@@ -1,43 +1,73 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Booklist.module.css'
+import { addToFinishedBooks, fetchReadingList, removeToReadingList } from '../api/books'
+import Router from 'next/router'
 
-const list = () => (
-  <>
-    <Head>
-      <title>Reading List</title>
-    </Head>
+const List = () => {
+  const [readingListData, setReadingListData] = useState([]) 
 
-    <div>
-      <div className={styles.card}>
-        <div className={styles.grid}>
-          <div>
-            <Image src="/azkaban.jpg" alt="Padington" width={150} height={250} />
-          </div>
-          <div>
-            <h2>Harry Potter and the Prisoner of Azkaban</h2>
-            <p>J. K. Rowling|Scholastic</p>
+  useEffect(() => {
+    const data = fetchReadingList();
 
-            <small>
-              In this third installment in the projected seven-volume series, Sirius Black, imprisoned for killing 13 people with one curse, escapes from Azkaban. As he heads for Hogwarts, the chilling Dementors who trail him quickly descend upon the school. "Each successive volume expands upon its predecessor with dizzyingly well-planned plots and inventive surprises," said PW in a Best Books of 2001 citation. Ages 8-up.
-            </small>
+    const getBooks = async () => { 
+      const books = await data.books
+      setReadingListData(books.data)
+    };
+    getBooks()
+    
+  }, [])
 
+  const handleClick = (e, listId, type) => {
+    if (type=="mark") {
+      addToFinishedBooks(listId)
+      Router.reload(window.location.pathname)
+    } else {
+      removeToReadingList(listId)
+      Router.reload(window.location.pathname)
+    }
+  }
+
+  return(
+    <>
+      <Head>
+        <title>Reading List</title>
+      </Head>
+
+      {readingListData && readingListData.map((list) => ( 
+        <div key={list.id}>
+          <div className={styles.card}>
             <div className={styles.grid}>
-              <button className={styles.button}>
-                <Link href="#">Mark as read</Link>
-              </button>
-              
-              <button className={styles.button}>
-                <Link href="#">Remove from list</Link>
-              </button>
+              <div>
+                <Image src={list.attributes.book.cover_image_url} alt={list.attributes.book.title} width={150} height={250} />
+              </div>
+              <div>
+                <h2>{list.attributes.book.title}</h2>
+                <p>{list.attributes.book.author}</p>
+                <p>{list.attributes.book.publisher}</p>
+
+                <small>{list.attributes.book.synopsis}</small>
+
+                <div className={styles.grid}>
+                  <button className={styles.button}>
+                    <Link href="#">
+                      <a onClick={(e) => handleClick(e, list.id, "mark")}>Mark as Read</a>
+                    </Link>
+                  </button>
+                  <button className={styles.button}>
+                    <Link href="#">
+                      <a onClick={(e) => handleClick(e, list.id, "remove")}>Remove from list</a>
+                    </Link>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </>
-)
+      ))}
+    </>
+)}
 
-export default list
+export default List

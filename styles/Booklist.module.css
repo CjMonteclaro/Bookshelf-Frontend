@@ -29,7 +29,6 @@
 }
 
 .grid {
-  /* height:300px; */
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 10px;
@@ -39,7 +38,6 @@
   text-align: center;
   padding: 20px 0;
   text-align: justify;
-  /* font-size: 30px; */
 }
 
 .button {
@@ -54,4 +52,3 @@
   transition-duration: 0.4s;
 
 }
-

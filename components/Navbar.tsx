@@ -20,11 +20,8 @@ const Navbar = () => {
           <a>Login</a>
         </Link>
       </li>
-      {/* <Link href={user ? "/logout" : "/login"}>
-        <a className="ml-auto">{user ? "Logout" : "Login"}</a>
-      </Link> */}  
-  </ul>
+    </ul>
   )
 }
 
-export default Navbar
+export { Navbar }
