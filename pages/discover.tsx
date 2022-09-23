@@ -3,8 +3,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Booklist.module.css'
-import { addToReadingList, fetchBooks } from './api/books'
-import { fetchUser } from './api/users'
+import { addToReadingList, fetchBooks } from '../api/books'
+import { fetchUser } from '../api/users'
 import Router from 'next/router'
 
 const Discover = () => {
@@ -22,7 +22,7 @@ const Discover = () => {
 
     const getUser = async () => { 
       const users = await userData.user
-      setUser(users.id)
+      setUser(users.data)
     }
     getUser()
     getBooks()
@@ -30,7 +30,7 @@ const Discover = () => {
   }, [])
 
   const handleClick = (e, bookId) => {
-    addToReadingList(bookId, user)
+    addToReadingList(bookId, user.id)
     Router.reload(window.location.pathname)
   }
   

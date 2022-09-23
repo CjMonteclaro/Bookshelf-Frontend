@@ -1,3 +1,4 @@
+import router from "next/router";
 import React from "react";
 import styles from '../styles/Login.module.css'
 
@@ -16,6 +17,7 @@ function RegisterForm({onSubmit, buttonText}) {
       password: password.value,
       email: email.value,
     })
+    router.push("/discover")
   }
 
   return (
@@ -31,4 +33,4 @@ function RegisterForm({onSubmit, buttonText}) {
   )
 }
 
-export default RegisterForm
+export { RegisterForm }
